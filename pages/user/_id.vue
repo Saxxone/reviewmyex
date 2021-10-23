@@ -59,8 +59,18 @@
       </review-card>
     </div>
 
-    <div class="chat-circle text-center">
+    <div class="chat-circle text-center" :class="[showChat ? 'show' : '']" @click="showChat = !showChat">
       <img src="/images/message-square-outline-white.svg" class="img-fluid mr-2" alt=""> Write Review
+    </div>
+    <div :class="[showChat ? 'show' : '']" class="chat-wrap">
+      <div class="review-input d-flex align-items-center px-2">
+        <textarea class="form-control border-0 mr-3" v-model="review"> </textarea>
+        <div>
+          <div class="action-circle" @click="sendReview">
+            <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +83,8 @@ export default {
   layout: 'general',
   data() {
     return {
+      showChat: false,
+      review: "",
       user: {},
       tags: [
         {
@@ -117,6 +129,9 @@ export default {
     },
     goBack() {
       this.$router.go(-1)
+    },
+    sendReview() {
+      this.showChat = false
     }
   }
 }
@@ -161,7 +176,7 @@ export default {
   align-items: center;
   justify-content: center;
   position: fixed;
-  bottom: 75px;
+  bottom: 30px;
   right: 14px;
   height: 54px;
   font-weight: 800;
@@ -169,5 +184,50 @@ export default {
   width: fit-content;
   padding: 0 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  transition: transform .4s ease-in-out;
+}
+
+.review-input {
+  border: none;
+
+}
+
+.action-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  background: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+
+.chat-wrap {
+  overflow: hidden;
+  position: fixed;
+  bottom: 30px;
+  width: 0;
+  transition: width .4s ease-in-out;
+}
+
+.chat-wrap.show {
+  width: 100%;
+  transition: width .4s ease-in-out;
+}
+
+.review-input textarea {
+  border-radius: 100px;
+  height: 60px;
+  resize: none;
+  width: calc(100vw - 60px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.chat-circle.show {
+  transform: translateX(180px);
+  transition: transform .4s ease-in-out;
 }
 </style>
