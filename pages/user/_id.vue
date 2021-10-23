@@ -64,10 +64,15 @@
     </div>
     <div :class="[showChat ? 'show' : '']" class="chat-wrap">
       <div class="review-input d-flex align-items-center px-2">
-        <textarea class="form-control border-0 mr-3" v-model="review"> </textarea>
+        <textarea class="form-control mr-3" v-model="review"> </textarea>
         <div>
-          <div class="action-circle" @click="sendReview">
-            <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
+          <div class="action-circle">
+            <div v-if="review.length > 0" @click="sendReview">
+              <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
+            </div>
+            <div v-else @click="close">
+              <img src="/images/cancel.svg" class="img-fluid" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -131,6 +136,9 @@ export default {
       this.$router.go(-1)
     },
     sendReview() {
+      this.close()
+    },
+    close() {
       this.showChat = false
     }
   }
@@ -198,7 +206,7 @@ export default {
   height: 60px;
   border-radius: 100px;
   background: #FFFFFF;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 20px rgba(70, 12, 23, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,15 +223,17 @@ export default {
 
 .chat-wrap.show {
   width: 100%;
+  overflow: unset;
   transition: width .4s ease-in-out;
 }
 
 .review-input textarea {
+  vertical-align: middle;
   border-radius: 100px;
   height: 60px;
   resize: none;
   width: calc(100vw - 60px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
 }
 
 .chat-circle.show {
