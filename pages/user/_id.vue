@@ -214,17 +214,17 @@ export default {
 }
 
 .chat-wrap {
-  overflow: hidden;
   position: fixed;
   bottom: 30px;
-  width: 0;
-  transition: width .4s ease-in-out;
+  width: 100%;
+  transform: translateX(-120vw);
+  transition: transform .4s ease-out;
 }
 
 .chat-wrap.show {
+  transform: translateX(0);
   width: 100%;
-  overflow: unset;
-  transition: width .4s ease-in-out;
+  transition: transform .4s ease-out;
 }
 
 .review-input textarea {
