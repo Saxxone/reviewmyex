@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-5">
     <div class="position-relative">
       <div class="w-100 py-4 px-1 position-absolute d-flex align-items-center justify-content-between">
         <div @click="goBack" class="cursor-pointer px-2">
@@ -46,6 +46,12 @@
         </div>
       </div>
     </div>
+    <div style="height: 300px"></div>
+    <div class="px-2">
+      <review-card v-for="review in reviews" :review="review" class="mb-3">
+      </review-card>
+    </div>
+
     <div class="chat-circle text-center">
       <img src="/images/message-square-outline-white.svg" class="img-fluid" alt="">
     </div>
@@ -73,6 +79,20 @@ export default {
         {
           icon: '/images/food.svg',
           text: 'Steaks, BBQ, Hotdogs, Salads'
+        },
+      ],
+      reviews: [
+        {
+          icon: '/images/bulb.svg',
+          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
+        },
+        {
+          icon: '/images/bookmark.svg',
+          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
+        },
+        {
+          icon: '/images/food.svg',
+          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
         },
       ]
     }

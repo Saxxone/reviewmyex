@@ -1,12 +1,21 @@
 <template>
-  <div>
-
+  <div class="review-card">
+    <div>
+      <div>
+        <div class="user-circle"></div>
+      </div>
+      <div></div>
+    </div>
+    <div>
+      <p class="color-light-grey font-weight-light text-12">{{review.text}}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ReviewCard"
+  name: "ReviewCard",
+  props: ['review']
 }
 </script>
 
@@ -18,9 +27,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  bottom: 75px;
-  right: 14px;
   height: 54px;
   width: 54px;
 }
