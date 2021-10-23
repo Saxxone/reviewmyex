@@ -71,7 +71,7 @@
               <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
             </div>
             <div v-else @click="close">
-              <img src="/images/cancel.svg" class="img-fluid" alt="">
+              <img src="/images/cancel.svg" class="img-fluid" style="opacity: 0.6" alt="">
             </div>
           </div>
         </div>
@@ -202,8 +202,8 @@ export default {
 }
 
 .action-circle {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-radius: 100px;
   background: #FFFFFF;
   box-shadow: 0 10px 20px rgba(70, 12, 23, 0.1);
@@ -230,7 +230,7 @@ export default {
 .review-input textarea {
   vertical-align: middle;
   border-radius: 100px;
-  height: 60px;
+  height: 54px;
   resize: none;
   width: calc(100vw - 60px);
   box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
