@@ -25,7 +25,6 @@
 </template>
 <script>
 import UserCard from "~/components/UserCard";
-import VueSlickCarousel from 'vue-slick-carousel'
 
 export default {
   components: {UserCard},
