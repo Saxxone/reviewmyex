@@ -28,6 +28,11 @@ import UserCard from "~/components/UserCard";
 
 export default {
   components: {UserCard},
+  head(){
+    return {
+      title: 'Review Your Ex | All'
+    }
+  },
   data() {
     return {
       users: [
