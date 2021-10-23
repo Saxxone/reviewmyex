@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-5">
+  <div class="">
     <div class="position-relative">
       <div class="w-100 py-4 px-1 position-absolute d-flex align-items-center justify-content-between">
         <div @click="goBack" class="cursor-pointer px-2">
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div style="height: 240px"></div>
-    <div class="px-2 pb-5 mb-5">
+    <div class="px-2 pb-5">
       <review-card v-for="review in reviews" :review="review" class="mb-3">
       </review-card>
     </div>
