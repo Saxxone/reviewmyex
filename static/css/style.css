@@ -77,3 +77,12 @@ a {
 .color-light-grey {
   color: #757E90;
 }
+
+.white-pill {
+  background: #FFFFFF;
+  box-shadow: 0 20px 60px rgba(65, 11, 24, 0.1);
+  border-radius: 15px;
+  padding: 6px 15px;
+  display: flex;
+  align-items: center;
+}
