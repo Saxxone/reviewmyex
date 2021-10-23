@@ -47,7 +47,7 @@
       </div>
     </div>
     <div style="height: 300px"></div>
-    <div class="px-2">
+    <div class="px-2 pb-5 mb-5">
       <review-card v-for="review in reviews" :review="review" class="mb-3">
       </review-card>
     </div>
