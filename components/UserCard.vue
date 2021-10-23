@@ -1,7 +1,9 @@
 <template>
   <div class="user-card">
     <div class="py-4 text-center position-relative">
-      <img :src="data.image" alt="" class="img-fluid" style="border-radius: 15px">
+      <div style="max-width: 315px; max-height: 361px; overflow: hidden; border-radius: 15px">
+        <img :src="data.image" alt="" class="img-fluid" style="border-radius: 15px">
+      </div>
       <div class="badge-wrap w-100 d-flex position-absolute align-items-center justify-content-center">
         <div class="badge d-flex align-items-center">
           <div class="text-capitalize ">

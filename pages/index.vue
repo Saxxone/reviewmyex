@@ -60,6 +60,18 @@ export default {
             rating: 'Top Rated'
           }
         },
+        {
+          id: '@1t3',
+          name: {
+            first_name: 'Nathan',
+            last_name: 'Hawk',
+          },
+          image: '/images/user-3.jpeg',
+          description: 'I Live my life like its the last day. Traveller, Explorer, Developer.',
+          meta: {
+            rating: 'Top Rated'
+          }
+        },
       ],
     }
   },
