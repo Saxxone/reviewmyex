@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-5">
     <div class="d-flex px-2 justify-content-between font-weight-bold mt-3 align-items-center text-12">
       <div class="white-pill">
         <div class="mr-1">
@@ -19,13 +19,13 @@
       </div>
     </div>
     <div class="py-4 px-2">
-      <UserCard v-for="user in users" :key="user.id" :data="user"/>
+      <UserCard v-for="user in users" :key="user.id" :data="user" class="mb-3"/>
     </div>
   </div>
 </template>
 <script>
-
 import UserCard from "~/components/UserCard";
+import VueSlickCarousel from 'vue-slick-carousel'
 
 export default {
   components: {UserCard},
@@ -56,9 +56,10 @@ export default {
             rating: 'Top Rated'
           }
         },
-      ]
+      ],
     }
   },
+  methods: {}
 
 }
 </script>

@@ -17,6 +17,6 @@ export default {
   left: 0;
 }
 .h-100-vh{
-  height: 100vh;
+  /*height: 100vh;*/
 }
 </style>
