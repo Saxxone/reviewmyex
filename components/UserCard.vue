@@ -9,7 +9,7 @@
           <div class="text-capitalize ">
             <img src="/images/heart-white.svg" class=" mr-2" alt="">
             <div class="d-inline-block">
-              {{ data.meta.rating }}
+              {{ data.meta.rank }}
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@
               <div class="text-capitalize ">
                 <img src="/images/heart-white.svg" class=" mr-2" alt="">
                 <div class="d-inline-block">
-                  {{ user.meta ? user.meta.rating : '' }}
+                  {{ user.meta ? user.meta.rank : '' }}
                 </div>
               </div>
             </div>
@@ -26,12 +26,19 @@
             <div class="font-weight-bold text-center text-14">
               {{ `${user.name ? user.name.first_name : ''} ${user.name ? user.name.last_name : ''}` }}
             </div>
-            <div class="text-center mb-4 font-weight-light text-12 text-lowercase">
-              <a v-if="user.name"
-                 :href="'https://mobile.twitter.com/'+ user.name.first_name.toLowerCase() + user.name.last_name.toLowerCase()"
+            <div class="text-center font-weight-light text-12 text-lowercase">
+              <a v-if="user.username"
+                 :href="'https://mobile.twitter.com/'+ user.username.toLowerCase()"
                  target="_blank">
-                @{{ user.name ? user.name.first_name + user.name.last_name : '' }}
+                @{{ user.name ? user.username : '' }}
               </a>
+            </div>
+            <div class="text-center small mb-4 font-weight-light text-12 text-lowercase">
+              <img src="/images/star.svg" style="width: 12px" alt="">
+              <img src="/images/star.svg" style="width: 12px" alt="">
+              <img src="/images/star.svg" style="width: 12px" alt="">
+              <img src="/images/star.svg" style="width: 12px" alt="">
+              <img src="/images/star.svg" style="opacity: 0.3; width: 12px" alt="">
             </div>
             <div class="d-flex mb-2 color-light-grey align-items-center font-weight-light text-12" v-for="tag in tags"
                  :key="tag.icon">
@@ -53,7 +60,7 @@
     </div>
 
     <div class="chat-circle text-center">
-      <img src="/images/message-square-outline-white.svg" class="img-fluid" alt="">
+      <img src="/images/message-square-outline-white.svg" class="img-fluid mr-2" alt=""> Write Review
     </div>
   </div>
 </template>
@@ -157,6 +164,10 @@ export default {
   bottom: 75px;
   right: 14px;
   height: 54px;
-  width: 54px;
+  font-weight: 800;
+  font-size: 12px;
+  width: fit-content;
+  padding: 0 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 </style>

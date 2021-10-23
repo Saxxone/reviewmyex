@@ -13,8 +13,13 @@ body {
   background: transparent !important;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
+  min-height: 100%;
   font-family: 'Mulish', sans-serif !important;
   color: #363636 !important;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
