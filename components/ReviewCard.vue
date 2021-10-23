@@ -1,6 +1,6 @@
 <template>
   <div class="review-card">
-    <div>
+    <div class="mb-3">
       <div>
         <div class="user-circle"></div>
       </div>
