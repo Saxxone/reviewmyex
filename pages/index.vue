@@ -25,55 +25,20 @@
 </template>
 <script>
 import UserCard from "~/components/UserCard";
+import {mapGetters} from 'vuex'
 
 export default {
   components: {UserCard},
-  head(){
+  head() {
     return {
       title: 'Review Your Ex | All'
     }
   },
   data() {
-    return {
-      users: [
-        {
-          id: '@1t1',
-          name: {
-            first_name: 'Kim',
-            last_name: 'Stephen',
-          },
-          image: '/images/user-1.jpeg',
-          description: 'Full-time Traveller. Globe Trotter.. Occasional Photographer. Part time Singer/Dancer.',
-          meta: {
-            rating: 'Top Rated'
-          }
-        },
-        {
-          id: '@1t2',
-          name: {
-            first_name: 'Stephen',
-            last_name: 'Patrick',
-          },
-          image: '/images/user-2.jpeg',
-          description: 'I Live my life like its the last day. Traveller, Explorer, Developer.',
-          meta: {
-            rating: 'Top Rated'
-          }
-        },
-        {
-          id: '@1t3',
-          name: {
-            first_name: 'Nathan',
-            last_name: 'Hawk',
-          },
-          image: '/images/user-3.jpeg',
-          description: 'I Live my life like its the last day. Traveller, Explorer, Developer.',
-          meta: {
-            rating: 'Top Rated'
-          }
-        },
-      ],
-    }
+    return {}
+  },
+  computed: {
+    ...mapGetters({users: "users/users"}),
   },
   methods: {}
 

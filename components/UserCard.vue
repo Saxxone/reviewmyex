@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card">
+  <div class="user-card" @click="viewUserProfile(data)">
     <div class="py-4 text-center position-relative">
       <div style="max-width: 315px; max-height: 361px; overflow: hidden; border-radius: 15px">
         <img :src="data.image" alt="" class="img-fluid" style="border-radius: 15px">
@@ -55,6 +55,11 @@ export default {
   name: "UserCard",
   props: {
     data: {type: Object}
+  },
+  methods: {
+    viewUserProfile(data) {
+      this.$router.push({path: '/user/' + data.id, params: {image: this.data.image}})
+    }
   }
 }
 </script>
@@ -73,7 +78,6 @@ export default {
   border-radius: 15px;
   color: #fff;
   padding: 6px 15px;
-  /*min-width: 400px;*/
 }
 
 .badge-wrap {
