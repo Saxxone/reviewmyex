@@ -7,6 +7,7 @@ html {
   width: 100%;
   scroll-behavior: smooth;
   background: linear-gradient(135deg, #FFFFFF 0%, #E4E6EB 100%) !important;
+  background-attachment: fixed;
 }
 
 body {
@@ -20,6 +21,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
 }
 
 a {
