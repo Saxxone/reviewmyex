@@ -1,8 +1,10 @@
 <template>
   <div class="user-card" @click="viewUserProfile(data)">
     <div class="py-4 text-center position-relative">
-      <div style="max-width: 315px; max-height: 361px; overflow: hidden; border-radius: 15px">
-        <img :src="data.image" alt="" class="img-fluid" style="border-radius: 15px">
+      <div class="d-flex justify-content-center">
+        <div style="max-width: 315px; max-height: 361px; overflow: hidden; border-radius: 15px">
+          <img :src="data.image" alt="" class="img-fluid" style="border-radius: 15px">
+        </div>
       </div>
       <div class="badge-wrap w-100 d-flex position-absolute align-items-center justify-content-center">
         <div class="badge d-flex align-items-center">
