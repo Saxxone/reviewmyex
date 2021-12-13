@@ -1,49 +1,33 @@
 export const state = () => ({
-  users: [
-    {
-      id: '1',
-      username: 'saxxone',
-      name: {
-        first_name: 'Kim',
-        last_name: 'Stephen',
-      },
-      image: '/images/user-1.jpeg',
-      description: 'Full-time Traveller. Globe Trotter.. Occasional Photographer. Part time Singer/Dancer.',
-      meta: {
-        rank: 'Top Rated'
-      }
-    },
-    {
-      id: '2',
-      username: 'saxxone',
-      name: {
-        first_name: 'Stephen',
-        last_name: 'Patrick',
-      },
-      image: '/images/user-2.jpeg',
-      description: 'I Live my life like its the last day. Traveller, Explorer, Developer.',
-      meta: {
-        rank: 'Top Rated'
-      }
-    },
-    {
-      id: '3',
-      username: 'saxxone',
-      name: {
-        first_name: 'Nathan',
-        last_name: 'Hawk',
-      },
-      image: '/images/user-3.jpeg',
-      description: 'I Live my life like its the last day. Traveller, Explorer, Developer.',
-      meta: {
-        rank: 'Top Rated'
-      }
-    },
-  ],
+  users: [],
+  active_user: {}
 })
 export const getters = {
   users: state => {
     return state.users
+  },
+  user: state => {
+    return state.active_user
+  },
+}
+export const mutations = {
+  fetchAllUsers(state, payload){
+    state.users = payload.data
+  },
+  getOneUser(state, payload){
+    state.active_user = payload.data
   }
 }
-export const mutations = {}
+
+export const actions = {
+  async fetchUsers(context) {
+    this.$axios.get(`http://localhost:4000/users/get-all-users`).then(res =>{
+      context.commit('fetchAllUsers', res)
+    })
+  },
+  async getUser(context, id) {
+    this.$axios.get(`http://localhost:4000/users/get-user/${id}`).then(res =>{
+      context.commit('getOneUser', res)
+    })
+  }
+}

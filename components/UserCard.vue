@@ -3,7 +3,7 @@
     <div class="py-4 text-center position-relative">
       <div class="d-flex justify-content-center">
         <div style="max-width: 315px; max-height: 361px; overflow: hidden; border-radius: 15px">
-          <img :src="data.image" alt="" class="img-fluid" style="border-radius: 15px">
+          <img :src="data.profile_image_url.replace('_normal','')" alt="" class="img-fluid" style="border-radius: 15px">
         </div>
       </div>
       <div class="badge-wrap w-100 d-flex position-absolute align-items-center justify-content-center">
@@ -11,14 +11,20 @@
           <div class="text-capitalize ">
             <img src="/images/heart-white.svg" class=" mr-2" alt="">
             <div class="d-inline-block">
-              {{ data.meta.rank }}
+              {{ data.average_rating }}
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <div class="font-bold-900 text-30">{{ `${data.name.first_name} ${data.name.last_name}` }}</div>
+      <div class="font-bold-900 text-30">
+        <span class="d-inline-block truncate">{{
+            `${data.name ? data.name : ''}`
+          }}</span>
+        <span v-if="data.verified"><img style="width: 16px" src="/images/verified.svg" class="img-fluid mt-n2" alt=""></span>
+      </div>
+
       <div class="font-weight-lighter color-light-grey text-12">{{ data.description }}</div>
     </div>
     <div class="d-flex mb-4 justify-content-center align-items-center mt-4">
@@ -60,7 +66,7 @@ export default {
   },
   methods: {
     viewUserProfile(data) {
-      this.$router.push({path: '/user/' + data.id, params: {image: this.data.image}})
+      this.$router.push({path: '/user/' + data.pid, params: {image: this.data.image}})
     }
   }
 }
@@ -96,4 +102,5 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 </style>

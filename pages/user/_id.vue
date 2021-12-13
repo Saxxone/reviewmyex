@@ -9,7 +9,7 @@
           <img src="/images/more-vertical-outline-white.svg" class="img-fluid" alt="">
         </div>
       </div>
-      <div :style="{backgroundImage: 'url('+user.image+')'}" class="user-profile"></div>
+      <div :style="{backgroundImage: 'url('+ user.profile_image_url.replace('_normal','')+')'}" class="user-profile"></div>
       <div class="d-flex justify-content-center">
         <div class="detail-card">
           <div class="badge-wrap d-flex position-absolute align-items-center justify-content-center">
@@ -17,20 +17,24 @@
               <div class="text-capitalize ">
                 <img src="/images/heart-white.svg" class=" mr-2" alt="">
                 <div class="d-inline-block">
-                  {{ user.meta ? user.meta.rank : '' }}
+                  {{ user.average_rating ? user.average_rating : '' }}
                 </div>
               </div>
             </div>
           </div>
           <div class="pt-4">
             <div class="font-weight-bold text-center text-14">
-              {{ `${user.name ? user.name.first_name : ''} ${user.name ? user.name.last_name : ''}` }}
+             <span class="d-inline-block truncate">{{
+                 `${user.name ? user.name : ''}`
+               }}</span>
+              <span v-if="user.verified"><img style="width: 16px" src="/images/verified.svg" class="img-fluid mt-n2"
+                                              alt=""></span>
             </div>
             <div class="text-center font-weight-light text-12 text-lowercase">
               <a v-if="user.username"
                  :href="'https://mobile.twitter.com/'+ user.username.toLowerCase()"
                  target="_blank">
-                @{{ user.name ? user.username : '' }}
+                @{{ user.username ? user.username : '' }}
               </a>
             </div>
             <div class="text-center small mb-4 font-weight-light text-12 text-lowercase">
@@ -55,7 +59,7 @@
     </div>
     <div style="height: 240px"></div>
     <div class="px-2 pb-5">
-      <review-card v-for="review in reviews" :review="review" class="mb-3">
+      <review-card v-for="(review, index) in reviews" :review="review" :key="'review'+index" class="mb-3">
       </review-card>
     </div>
 
@@ -64,10 +68,10 @@
     </div>
     <div :class="[showChat ? 'show' : '']" class="chat-wrap">
       <div class="review-input d-flex align-items-center px-2">
-        <textarea class="form-control mr-3" v-model="review"> </textarea>
+        <textarea class="form-control mr-3" v-model="review.content"> </textarea>
         <div>
           <div class="action-circle">
-            <div v-if="review.length > 0" @click="sendReview">
+            <div v-if="review.content.length > 0" @click="sendReview">
               <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
             </div>
             <div v-else @click="close">
@@ -89,8 +93,12 @@ export default {
   data() {
     return {
       showChat: false,
-      review: "",
-      user: {},
+      review: {
+        content: '',
+        name: 'SaxxoneBase',
+        review_by: 'SaxxoneMe',
+        review_for: 'SaxxoneYou'
+      },
       tags: [
         {
           icon: '/images/bulb.svg',
@@ -122,7 +130,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({users: "users/users"}),
+    ...mapGetters({user: "users/user"}),
   },
   mounted() {
     this.getUserData()
@@ -130,12 +138,13 @@ export default {
   methods: {
     getUserData() {
       const id = this.$route.params.id
-      this.user = this.users[id - 1]
+      this.$store.dispatch('users/getUser', id)
     },
     goBack() {
       this.$router.go(-1)
     },
     sendReview() {
+      this.$axios.post('http://localhost:4000/reviews/create', this.review)
       this.close()
     },
     close() {

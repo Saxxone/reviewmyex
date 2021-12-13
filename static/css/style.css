@@ -102,3 +102,14 @@ a {
 .cursor-pointer {
   cursor: pointer;
 }
+.form-control:focus{
+  outline: none !important;
+  box-shadow: unset !important;
+  border: unset !important;
+}
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  /*text-overflow:;*/
+}
