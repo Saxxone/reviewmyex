@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" v-if="user.username">
     <div class="position-relative">
       <div class="w-100 py-4 px-1 position-absolute d-flex align-items-center justify-content-between">
         <div @click="goBack" class="cursor-pointer px-2">
@@ -9,7 +9,8 @@
           <img src="/images/more-vertical-outline-white.svg" class="img-fluid" alt="">
         </div>
       </div>
-      <div :style="{backgroundImage: 'url('+ user.profile_image_url.replace('_normal','')+')'}" class="user-profile"></div>
+      <div :style="{backgroundImage: 'url('+ user.profile_image_url.replace('_normal','')+')'}"
+           class="user-profile"></div>
       <div class="d-flex justify-content-center">
         <div class="detail-card">
           <div class="badge-wrap d-flex position-absolute align-items-center justify-content-center">
@@ -37,20 +38,16 @@
                 @{{ user.username ? user.username : '' }}
               </a>
             </div>
-            <div class="text-center small mb-4 font-weight-light text-12 text-lowercase">
+            <div class="text-center small mb-1 font-weight-light text-12 text-lowercase">
               <img src="/images/star.svg" style="width: 12px" alt="">
               <img src="/images/star.svg" style="width: 12px" alt="">
               <img src="/images/star.svg" style="width: 12px" alt="">
               <img src="/images/star.svg" style="width: 12px" alt="">
               <img src="/images/star.svg" style="opacity: 0.3; width: 12px" alt="">
             </div>
-            <div class="d-flex mb-2 color-light-grey align-items-center font-weight-light text-12" v-for="tag in tags"
-                 :key="tag.icon">
-              <div class="mr-2">
-                <img :src="tag.icon" class="img-fluid mb-1" alt="">
-              </div>
+            <div class="d-flex mb-2 text-center justify-content-center color-light-grey align-items-center font-weight-light text-12">
               <div>
-                {{ tag.text }}
+                {{ user.description }}
               </div>
             </div>
           </div>
@@ -99,20 +96,6 @@ export default {
         review_by: 'SaxxoneMe',
         review_for: 'SaxxoneYou'
       },
-      tags: [
-        {
-          icon: '/images/bulb.svg',
-          text: '213 reviews'
-        },
-        {
-          icon: '/images/bookmark.svg',
-          text: 'Tea Totaller, Loves Photography & Travel'
-        },
-        {
-          icon: '/images/food.svg',
-          text: 'Steaks, BBQ, Hotdogs, Salads'
-        },
-      ],
       reviews: [
         {
           icon: '/images/bulb.svg',
@@ -137,8 +120,9 @@ export default {
   },
   methods: {
     getUserData() {
-      const id = this.$route.params.id
-      this.$store.dispatch('users/getUser', id)
+      const username = this.$route.params.id
+      console.log(username)
+      this.$store.dispatch('users/getUser', username)
     },
     goBack() {
       this.$router.go(-1)

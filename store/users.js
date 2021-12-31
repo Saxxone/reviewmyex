@@ -25,8 +25,8 @@ export const actions = {
       context.commit('fetchAllUsers', res)
     })
   },
-  async getUser(context, id) {
-    this.$axios.get(`http://localhost:4000/users/get-user/${id}`).then(res =>{
+  async getUser(context, username) {
+    this.$axios.get(`http://localhost:4000/users/get-user/${username}`).then(res =>{
       context.commit('getOneUser', res)
     })
   }

@@ -3,7 +3,7 @@
     <div class="py-4 text-center position-relative">
       <div class="d-flex justify-content-center">
         <div style="max-width: 315px; max-height: 361px; overflow: hidden; border-radius: 15px">
-          <img :src="data.profile_image_url.replace('_normal','')" alt="" class="img-fluid" style="border-radius: 15px">
+          <img v-if="data.profile_image_url" :src="data.profile_image_url.replace('_normal','')" alt="" class="img-fluid" style="border-radius: 15px">
         </div>
       </div>
       <div class="badge-wrap w-100 d-flex position-absolute align-items-center justify-content-center">
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     viewUserProfile(data) {
-      this.$router.push({path: '/user/' + data.pid, params: {image: this.data.image}})
+      this.$router.push({path: '/user/' + data.username, params: {image: this.data.image}})
     }
   }
 }

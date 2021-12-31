@@ -23,7 +23,7 @@
         <div>
           <img src="/images/search.svg" style="width: 20px;" class="img-fluid" alt="">
         </div>
-        <b-form-input debounce="1000" @keyup.e.enter="search" class="form-control border-0 bg-transparent"
+        <b-form-input debounce="1000" type="search" @keyup.enter="search" class="form-control border-0 bg-transparent"
                       placeholder="search by twitter handle"
                       v-model="filter"/>
       </div>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="py-4 px-2">
-      <div v-if="searchResults.length>0">
+      <div v-if="showSearchResults">
         <UserCard v-for="user in searchResults" :key="'user'+user.id" :data="user" class="mb-3"/>
       </div>
       <div v-else>
@@ -39,14 +39,16 @@
       </div>
       <div class="py-5"></div>
     </div>
+    <NotificationSnackbar/>
   </div>
 </template>
 <script>
 import UserCard from "~/components/UserCard";
+import NotificationSnackbar from "~/components/notification-snackbar";
 import {mapGetters} from 'vuex'
 
 export default {
-  components: {UserCard},
+  components: {UserCard, NotificationSnackbar},
   head() {
     return {
       title: 'Review Your Ex | All'
@@ -56,6 +58,7 @@ export default {
     return {
       showSearch: false,
       filter: '',
+      showSearchResults: false,
       searchResults: []
     }
   },
@@ -68,8 +71,17 @@ export default {
   methods: {
     search() {
       if (this.filter.length > 0) {
-        this.$axios.get(`http://localhost:4000/users/search/${this.filter}`).then(res => {
-          this.searchResults = res.data.data
+        this.$axios.get(`http://localhost:4000/users/search/${this.filter.toLowerCase()}`).then(res => {
+          this.showSearchResults = false
+          if (res.data.data)
+            this.searchResults = res.data.data
+          else {
+            this.searchResults[0] = res.data
+          }
+          this.showSearchResults = true
+        }).catch(e => {
+          this.$notification('error', e.message, true)
+          console.log(e.message)
         })
       }
     },
