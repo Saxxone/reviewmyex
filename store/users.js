@@ -21,12 +21,12 @@ export const mutations = {
 
 export const actions = {
   async fetchUsers(context) {
-    this.$axios.get(`http://localhost:4000/users/get-all-users`).then(res =>{
+    this.$axios.get(`https://api.reviewmyex.com/users/get-all-users`).then(res =>{
       context.commit('fetchAllUsers', res)
     })
   },
   async getUser(context, username) {
-    this.$axios.get(`http://localhost:4000/users/get-user/${username}`).then(res =>{
+    this.$axios.get(`https://api.reviewmyex.com/users/get-user/${username}`).then(res =>{
       context.commit('getOneUser', res)
     })
   }

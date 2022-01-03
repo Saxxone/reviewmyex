@@ -144,7 +144,7 @@ export default {
         review_by: this.review.username,
         content: this.review.content
       }
-      this.$axios.post('http://localhost:4000/reviews/create', review).then(res => {
+      this.$axios.post('https://api.reviewmyex.com/reviews/create', review).then(res => {
         this.close()
         this.getUserData()
         this.review = {

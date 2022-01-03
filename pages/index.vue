@@ -72,7 +72,7 @@ export default {
     search() {
       if (this.filter.length > 0) {
         if (this.filter.charAt(0) === '@') this.filter = this.filter.substring(1);
-        this.$axios.get(`http://localhost:4000/users/search/${this.filter.toLowerCase()}`).then(res => {
+        this.$axios.get(`https://api.reviewmyex.com/users/search/${this.filter.toLowerCase()}`).then(res => {
           this.showSearchResults = false
           if (res.data.data)
             this.searchResults = res.data.data
