@@ -1,13 +1,13 @@
 <template>
   <div class="review-card">
-    <div class="mb-3">
+    <div class="mb-3 d-flex align-items-center">
       <div>
         <div class="user-circle"></div>
       </div>
-      <div></div>
+      <div class="text-14 color-light-grey ml-2" style="opacity: 0.7">Anonymous</div>
     </div>
     <div>
-      <p class="color-light-grey font-weight-light text-12">{{review.content}}</p>
+      <p class="text-black font-weight-light text-12">{{review.content}}</p>
     </div>
   </div>
 </template>
@@ -36,5 +36,8 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
   padding: 15px;
+}
+.text-black {
+  color: #000;
 }
 </style>

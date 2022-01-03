@@ -18,12 +18,14 @@
       </div>
     </div>
     <div class="text-center">
-      <div class="font-bold-900 text-30">
+      <div class="font-bold-900 text-30 mb-3" style="line-height: 1">
         <span class="d-inline-block truncate">{{
             `${data.name ? data.name : ''}`
           }}</span>
         <span v-if="data.verified"><img style="width: 16px" src="/images/verified.svg" class="img-fluid mt-n2" alt=""></span>
+        <div class="color-light-grey text-12">@{{ `${data.username ? data.username : ''}`}}</div>
       </div>
+
 
       <div class="font-weight-lighter color-light-grey text-12">{{ data.description }}</div>
     </div>

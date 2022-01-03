@@ -59,8 +59,13 @@
     </div>
     <div style="height: 190px"></div>
     <div class="px-2 pb-5">
-      <review-card v-for="(review, index) in user.others_reviews" :review="review" :key="'review'+index" class="mb-3">
-      </review-card>
+      <div class="text-center color-light-grey font-bold-900 text-30" v-if="user.others_reviews.length < 1">
+        No Reviews Yet
+      </div>
+      <div v-else>
+        <review-card v-for="(review, index) in user.others_reviews" :review="review" :key="'review'+index" class="mb-3">
+        </review-card>
+      </div>
     </div>
 
     <div class="chat-circle text-center" :class="[showChat ? 'show' : '']" @click="showChat = !showChat">
@@ -77,7 +82,7 @@
           </div>
         </div>
         <div class="review-input px-2">
-          <b-form-group>
+          <b-form-group description="Your username will be kept anonymous">
             <label>Username</label>
             <b-input type="text" placeholder="your twitter username e.g @twitter" v-model="review.username"/>
           </b-form-group>
@@ -236,6 +241,7 @@ input::placeholder {
 
 .chat-wrap-content {
   background-color: white;
+  border: 1px solid #cfcfcf;
   padding: 18px 10px;
   box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
 }
