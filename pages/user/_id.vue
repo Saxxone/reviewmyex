@@ -2,8 +2,10 @@
   <div class="" v-if="user.username">
     <div class="position-relative">
       <div class="w-100 py-4 px-1 position-absolute d-flex align-items-center justify-content-between">
-        <div @click="goBack" class="cursor-pointer px-2">
-          <img src="/images/chevron-left-white.svg" class="img-fluid" alt="">
+        <div @click="goBack" class="cursor-pointer d-flex align-items-center justify-content-center back-button">
+          <div>
+            <img src="/images/chevron-left-white.svg" class="img-fluid mb-1" alt="">
+          </div>
         </div>
         <div class="cursor-pointer px-2">
           <img src="/images/more-vertical-outline-white.svg" class="img-fluid" alt="">
@@ -45,7 +47,8 @@
               <img src="/images/star.svg" style="width: 12px" alt="">
               <img src="/images/star.svg" style="opacity: 0.3; width: 12px" alt="">
             </div>
-            <div class="d-flex mb-2 text-center justify-content-center color-light-grey align-items-center font-weight-light text-12">
+            <div
+              class="d-flex mb-2 text-center justify-content-center color-light-grey align-items-center font-weight-light text-12">
               <div>
                 {{ user.description }}
               </div>
@@ -54,25 +57,42 @@
         </div>
       </div>
     </div>
-    <div style="height: 240px"></div>
+    <div style="height: 190px"></div>
     <div class="px-2 pb-5">
-      <review-card v-for="(review, index) in reviews" :review="review" :key="'review'+index" class="mb-3">
+      <review-card v-for="(review, index) in user.others_reviews" :review="review" :key="'review'+index" class="mb-3">
       </review-card>
     </div>
 
     <div class="chat-circle text-center" :class="[showChat ? 'show' : '']" @click="showChat = !showChat">
       <img src="/images/message-square-outline-white.svg" class="img-fluid mr-2" alt=""> Write Review
     </div>
-    <div :class="[showChat ? 'show' : '']" class="chat-wrap">
-      <div class="review-input d-flex align-items-center px-2">
-        <textarea class="form-control mr-3" v-model="review.content"> </textarea>
-        <div>
-          <div class="action-circle">
-            <div v-if="review.content.length > 0" @click="sendReview">
-              <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
+    <div :class="[showChat ? 'show' : '']" class="chat-wrap p-2">
+      <div class="chat-wrap-content ">
+        <div class="d-flex mb-4">
+          <div>Send Review</div>
+          <div @click="close" class="close-btn ml-auto">
+            <div>
+              <img src="/images/cancel.svg" class="img-fluid" style="opacity: 0.6; width: 10px" alt="">
             </div>
-            <div v-else @click="close">
-              <img src="/images/cancel.svg" class="img-fluid" style="opacity: 0.6" alt="">
+          </div>
+        </div>
+        <div class="review-input px-2">
+          <b-form-group>
+            <label>Username</label>
+            <b-input type="text" placeholder="your twitter username e.g @twitter" v-model="review.username"/>
+          </b-form-group>
+          <b-form-group>
+            <label>Your review</label>
+            <b-textarea class="form-control mr-3" v-model="review.content"></b-textarea>
+          </b-form-group>
+          <div>
+            <div class="">
+              <button class="btn btn-primary text-white"
+                      :disabled="review.content.length < 1  ||  review.username.length < 1"
+                      @click="sendReview">
+                Save
+              </button>
+
             </div>
           </div>
         </div>
@@ -92,24 +112,8 @@ export default {
       showChat: false,
       review: {
         content: '',
-        name: 'SaxxoneBase',
-        review_by: 'SaxxoneMe',
-        review_for: 'SaxxoneYou'
+        username: ''
       },
-      reviews: [
-        {
-          icon: '/images/bulb.svg',
-          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
-        },
-        {
-          icon: '/images/bookmark.svg',
-          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
-        },
-        {
-          icon: '/images/food.svg',
-          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
-        },
-      ]
     }
   },
   computed: {
@@ -128,8 +132,24 @@ export default {
       this.$router.go(-1)
     },
     sendReview() {
-      this.$axios.post('http://localhost:4000/reviews/create', this.review)
-      this.close()
+      const review_for = this.$route.params.id
+      if (this.review.username.charAt(0) === '@') this.review.username = this.review.username.substring(1);
+      let review = {
+        review_for: review_for,
+        review_by: this.review.username,
+        content: this.review.content
+      }
+      this.$axios.post('http://localhost:4000/reviews/create', review).then(res => {
+        this.close()
+        this.getUserData()
+        this.review = {
+          content: '',
+          username: ''
+        }
+        this.$notification('success', 'saved', true)
+      }).catch(e => {
+        this.$notification('error', e.message, true)
+      })
     },
     close() {
       this.showChat = false
@@ -184,7 +204,7 @@ export default {
   font-size: 12px;
   width: fit-content;
   padding: 0 16px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);*/
   z-index: 10;
   transition: transform .4s ease-in-out;
 }
@@ -194,24 +214,30 @@ export default {
 
 }
 
-.action-circle {
-  width: 54px;
-  height: 54px;
-  border-radius: 100px;
-  background: #FFFFFF;
-  box-shadow: 0 10px 20px rgba(70, 12, 23, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9;
+.btn-primary {
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
+}
+
+input::placeholder {
+  font-size: 14px;
+
 }
 
 .chat-wrap {
   position: fixed;
   bottom: 30px;
   width: 100%;
-  transform: translateX(-120vw);
+  transform: translateY(120vw);
   transition: transform .4s ease-out;
+
+}
+
+.chat-wrap-content {
+  background-color: white;
+  padding: 18px 10px;
+  box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
 }
 
 .chat-wrap.show {
@@ -220,17 +246,38 @@ export default {
   transition: transform .4s ease-out;
 }
 
-.review-input textarea {
-  vertical-align: middle;
-  border-radius: 100px;
-  height: 54px;
+.review-input {
+  /*height: 54px;*/
   resize: none;
-  width: calc(100vw - 60px);
-  box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
+}
+
+.review-input textarea, .review-input input {
+  background-color: white;
+  margin-bottom: 10px;
 }
 
 .chat-circle.show {
   transform: translateX(180px);
   transition: transform .4s ease-in-out;
+}
+
+.back-button {
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.close-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 14px !important;
 }
 </style>

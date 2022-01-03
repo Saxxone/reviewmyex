@@ -7,7 +7,7 @@
       <div></div>
     </div>
     <div>
-      <p class="color-light-grey font-weight-light text-12">{{review.text}}</p>
+      <p class="color-light-grey font-weight-light text-12">{{review.content}}</p>
     </div>
   </div>
 </template>
