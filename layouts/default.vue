@@ -1,7 +1,7 @@
 <template>
   <div class="position-relative h-100-vh">
     <nuxt/>
-    <BottomBar class="position-fixed w-100 bottom-bar"/>
+<!--    <BottomBar class="position-fixed w-100 bottom-bar"/>-->
   </div>
 </template>
 

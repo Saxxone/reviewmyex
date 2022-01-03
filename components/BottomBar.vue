@@ -26,17 +26,17 @@ export default {
         {
           icon: '/images/heart.svg',
           text: 'Likes',
-          url: '/likes'
+          url: '/#'
         },
         {
           icon: '/images/star.svg',
           text: 'Reviews',
-          url: '/reviews'
+          url: '/#'
         },
         {
           icon: '/images/person.svg',
           text: 'Profile',
-          url: '/profile'
+          url: '/#'
         },
       ]
     }

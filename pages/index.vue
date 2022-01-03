@@ -1,16 +1,16 @@
 <template>
   <div class="">
-    <div class="d-flex px-2 justify-content-between font-weight-bold mt-3 align-items-center text-12">
-      <div class="white-pill">
-        <div class="mr-1">
-          <img src="/images/pin.svg" class="img-fluid" alt="">
-        </div>
-        <div>
-          Lagos
-        </div>
-      </div>
+    <div class="d-flex px-2 top-bar justify-content-end font-weight-bold mt-3 align-items-center text-12">
+      <!--      <div class="white-pill">-->
+      <!--        <div class="mr-1">-->
+      <!--          <img src="/images/pin.svg" class="img-fluid" alt="">-->
+      <!--        </div>-->
+      <!--        <div>-->
+      <!--          Earth-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div @click="showSearch = true" class="white-pill">
-        <div class="mr-1">
+        <div class="mr-1 ml-auto">
           <img src="/images/search-purple.svg" class="img-fluid" alt="">
         </div>
         <div>
@@ -71,6 +71,7 @@ export default {
   methods: {
     search() {
       if (this.filter.length > 0) {
+        if (this.filter.charAt(0) === '@') this.filter = this.filter.substring(1);
         this.$axios.get(`http://localhost:4000/users/search/${this.filter.toLowerCase()}`).then(res => {
           this.showSearchResults = false
           if (res.data.data)
@@ -133,5 +134,15 @@ export default {
 .search-overlay {
   height: 100vh;
   background: transparent;
+}
+
+.top-bar {
+  position: fixed;
+  width: 100vw;
+  padding: 10px 0;
+  top: 0px;
+  z-index: 2;
+  left: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 </style>

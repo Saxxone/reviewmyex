@@ -62,25 +62,6 @@
       <review-card v-for="(review, index) in user.reviews_by_me" :review="review" :key="'review'+index" class="mb-3">
       </review-card>
     </div>
-
-    <div class="chat-circle text-center" :class="[showChat ? 'show' : '']" @click="showChat = !showChat">
-      <img src="/images/message-square-outline-white.svg" class="img-fluid mr-2" alt=""> Write Review
-    </div>
-    <div :class="[showChat ? 'show' : '']" class="chat-wrap">
-      <div class="review-input d-flex align-items-center px-2">
-        <textarea class="form-control mr-3" v-model="review.content"> </textarea>
-        <div>
-          <div class="action-circle">
-            <div v-if="review.content.length > 0" @click="sendReview">
-              <img src="/images/send.svg" style="width: 20px;" class="img-fluid" alt="">
-            </div>
-            <div v-else @click="close">
-              <img src="/images/cancel.svg" class="img-fluid" style="opacity: 0.6" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -93,24 +74,6 @@ export default {
   data() {
     return {
       showChat: false,
-      review: {
-        content: '',
-        username: ''
-      },
-      reviews: [
-        {
-          icon: '/images/bulb.svg',
-          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
-        },
-        {
-          icon: '/images/bookmark.svg',
-          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
-        },
-        {
-          icon: '/images/food.svg',
-          text: 'Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. '
-        },
-      ]
     }
   },
   computed: {
@@ -128,19 +91,6 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
-    sendReview() {
-      const username = this.$route.params.id
-      let review = {
-        review_by: 'saxxone',
-        review_for: username,
-        content: this.review.content
-      }
-      this.$axios.post('http://localhost:4000/reviews/create', review)
-      this.close()
-    },
-    close() {
-      this.showChat = false
-    }
   }
 }
 </script>
