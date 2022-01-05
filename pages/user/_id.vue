@@ -224,6 +224,7 @@ export default {
   height: 50px;
   background: linear-gradient(308.16deg, #3023AE -38.29%, #C86DD7 189.48%) !important;
   box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
+  border-color: #3023AE;
 }
 
 input::placeholder {
