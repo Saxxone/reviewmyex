@@ -70,7 +70,7 @@ export default {
       ogImage: 'https://reviewmyex.com/review.jpeg',
       ogTitle: 'Review My Ex',
       ogSiteName: 'Review My Ex',
-      twitterCard: 'https://reviewmyex.com/review.jpeg',
+      twitterCard: 'summary_large_image',
       twitterUrl: 'https://reviewmyex.com/',
       ogHost: 'reviewmyex.com',
       ogDescription: 'Review your past dates and exes, and help others know what to expect.',
