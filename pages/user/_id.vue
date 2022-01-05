@@ -95,6 +95,7 @@
               <button class="btn btn-primary text-white"
                       :disabled="review.content.length < 1  ||  review.username.length < 1"
                       @click="sendReview">
+                <b-spinner label="Spinning" v-if="isLoading"></b-spinner>
                 Save
               </button>
 
@@ -119,6 +120,7 @@ export default {
         content: '',
         username: ''
       },
+      isLoading: false
     }
   },
   computed: {
@@ -137,6 +139,7 @@ export default {
       this.$router.go(-1)
     },
     sendReview() {
+      this.isLoading = true
       const review_for = this.$route.params.id
       if (this.review.username.charAt(0) === '@') this.review.username = this.review.username.substring(1);
       let review = {
@@ -151,8 +154,10 @@ export default {
           content: '',
           username: ''
         }
+        this.isLoading = false
         this.$notification('success', 'saved', true)
       }).catch(e => {
+        this.isLoading = false
         this.$notification('error', e.message, true)
       })
     },
@@ -219,13 +224,6 @@ export default {
 
 }
 
-.btn-primary {
-  width: 100%;
-  height: 50px;
-  background: linear-gradient(308.16deg, #3023AE -38.29%, #C86DD7 189.48%) !important;
-  box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
-  border-color: #3023AE;
-}
 
 input::placeholder {
   font-size: 14px;

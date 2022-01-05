@@ -1,5 +1,20 @@
 <template>
   <div class="">
+    <div class="container mb-4" v-if="!showSearchResults">
+      <h1 class="font-bold-900 mt-5 mb-3 pt-4">Review My Ex</h1>
+      <p class="color-light-grey">Rate and review your ex or that special date. Warn others about predators or show some
+        love by telling someone how much you loved
+        being with them.</p>
+      <b-input debounce="1000" type="search" @keyup.enter="search" class="search-input-mod mb-3 bg-transparent"
+               placeholder="search by twitter handle e.g @twitter"
+               v-model="filter"/>
+      <button class="btn btn-primary text-white"
+              @click="search">
+        <b-spinner label="Spinning" v-if="isLoading"></b-spinner>
+        Search
+      </button>
+    </div>
+
     <div class="d-flex px-2 top-bar justify-content-end font-weight-bold mt-3 align-items-center text-12">
       <!--      <div class="white-pill">-->
       <!--        <div class="mr-1">-->
@@ -24,7 +39,7 @@
           <img src="/images/search.svg" style="width: 20px;" class="img-fluid" alt="">
         </div>
         <b-form-input debounce="1000" type="search" @keyup.enter="search" class="form-control border-0 bg-transparent"
-                      placeholder="search by twitter handle"
+                      placeholder="search by twitter handle e.g @twitter"
                       v-model="filter"/>
       </div>
       <div @click="showSearch=false" class="search-overlay">
@@ -53,7 +68,7 @@ export default {
     return {
       title: 'Review Your Ex | All',
       meta: [
-        { hid: 'og:image', property: 'og:image', content: '/review.jpeg' }
+        {hid: 'og:image', property: 'og:image', content: '/review.jpeg'}
       ]
     }
   },
@@ -62,7 +77,8 @@ export default {
       showSearch: false,
       filter: '',
       showSearchResults: false,
-      searchResults: []
+      searchResults: [],
+      isLoading: false
     }
   },
   computed: {
@@ -74,6 +90,7 @@ export default {
   methods: {
     search() {
       if (this.filter.length > 0) {
+        this.isLoading = true
         if (this.filter.charAt(0) === '@') this.filter = this.filter.substring(1);
         this.$axios.get(`https://api.reviewmyex.com/users/search/${this.filter.toLowerCase()}`).then(res => {
           this.showSearchResults = false
@@ -82,10 +99,12 @@ export default {
           else {
             this.searchResults[0] = res.data
           }
+          this.isLoading = false
           this.showSearchResults = true
         }).catch(e => {
           this.$notification('error', e.message, true)
           console.log(e.message)
+          this.isLoading = false
         })
       }
     },
@@ -111,7 +130,6 @@ export default {
   background: #FFFFFF;
   box-shadow: 0 20px 60px rgba(65, 11, 24, 0.1);
   border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(65, 11, 24, 0.1);
 }
 
 .search-input input::placeholder {
@@ -147,5 +165,18 @@ export default {
   z-index: 2;
   left: 4px;
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.search-input-mod {
+  border: 1px solid #a889cb;
+  height: 48px;
+  background: #FFFFFF;
+  box-shadow: 0 20px 60px rgba(65, 11, 24, 0.1);
+  border-radius: 5px;
+  color: #3023AE;
+}
+
+.search-input-mod::placeholder {
+  font-size: 14px;
 }
 </style>

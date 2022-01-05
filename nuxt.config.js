@@ -56,7 +56,7 @@ export default {
       fileName: 'android-chrome-512x512.png',
     },
     manifest: {
-      name: 'Rate and Review your past dates',
+      name: 'Review My Ex',
       lang: 'en',
       short_name: 'Review My Ex',
       theme_color: '#3023AE',
@@ -66,6 +66,7 @@ export default {
     },
     meta: {
       ogImage: '/review.jpeg',
+      ogTitle: 'Review My Ex',
       ogSiteName: 'Review My Ex',
       twitterCard: '/review.jpeg',
       ogHost: 'reviewmyex.com',
