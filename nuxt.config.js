@@ -7,7 +7,9 @@ export default {
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {hid: 'description', name: 'description', content: 'Review your past dates and exes, and help others know what to expect.'},
-      {name: 'format-detection', content: 'telephone=no'}
+      {name: 'format-detection', content: 'telephone=no'},
+      {name: 'twitter:description', content: 'Review your past dates and exes, and help others know what to expect.'},
+      {name: 'twitter:title', content: 'Review My Ex'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png'},
@@ -65,10 +67,11 @@ export default {
       useWebmanifestExtension: false
     },
     meta: {
-      ogImage: '/review.jpeg',
+      ogImage: 'https://reviewmyex.com/review.jpeg',
       ogTitle: 'Review My Ex',
       ogSiteName: 'Review My Ex',
-      twitterCard: '/review.jpeg',
+      twitterCard: 'https://reviewmyex.com/review.jpeg',
+      twitterUrl: 'https://reviewmyex.com/',
       ogHost: 'reviewmyex.com',
       ogDescription: 'Review your past dates and exes, and help others know what to expect.',
       description: 'Review your past dates and exes, and help others know what to expect.',
