@@ -51,7 +51,10 @@ export default {
   components: {UserCard, NotificationSnackbar},
   head() {
     return {
-      title: 'Review Your Ex | All'
+      title: 'Review Your Ex | All',
+      meta: [
+        { hid: 'og:image', property: 'og:image', content: '/review.jpeg' }
+      ]
     }
   },
   data() {
