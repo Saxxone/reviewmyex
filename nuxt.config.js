@@ -7,11 +7,10 @@ export default {
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {hid: 'description', name: 'description', content: 'Review your past dates and exes, and help others know what to expect.'},
-      {hid: 'og:image', property: 'og:image', content: '/review.jpeg'},
       {name: 'format-detection', content: 'telephone=no'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.png'},
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png'},
       {rel: 'stylesheet', href: '/css/style.css'},
       {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
       {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: true},
@@ -53,11 +52,12 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     icon: {
-      fileName: 'favicon.png'
+      sizes: [64, 120, 144, 152, 192, 512],
+      fileName: 'android-chrome-512x512.png',
     },
     manifest: {
       name: 'Rate and Review your past dates',
-      lang: 'fa',
+      lang: 'en',
       short_name: 'Review My Ex',
       theme_color: '#3023AE',
       description: 'Review your past dates and exes, and help others know what to expect.',
