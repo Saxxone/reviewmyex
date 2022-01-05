@@ -1,11 +1,12 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'review-my-ex',
+    title: 'Rate and Review your past dates',
     meta: [
+
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: ''},
+      {hid: 'description', name: 'description', content: 'Review your past dates and exes, and help others know what to expect.'},
       {hid: 'og:image', property: 'og:image', content: '/review.jpeg'},
       {name: 'format-detection', content: 'telephone=no'}
     ],
@@ -51,8 +52,25 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      fileName: 'favicon.png'
+    },
     manifest: {
-      lang: 'en'
+      name: 'Rate and Review your past dates',
+      lang: 'fa',
+      short_name: 'Review My Ex',
+      theme_color: '#3023AE',
+      description: 'Review your past dates and exes, and help others know what to expect.',
+      display: 'standalone',
+      useWebmanifestExtension: false
+    },
+    meta: {
+      ogImage: '/review.jpeg',
+      ogSiteName: 'Review My Ex',
+      twitterCard: '/review.jpeg',
+      ogHost: 'reviewmyex.com',
+      ogDescription: 'Review your past dates and exes, and help others know what to expect.',
+      description: 'Review your past dates and exes, and help others know what to expect.',
     }
   },
 
