@@ -28,7 +28,8 @@ export default {
     ],
     script: [
       {async: 'async', src: "https://www.googletagmanager.com/gtag/js?id=G-LD221QEGHP"},
-      {src: "/gtag.js"},
+      {src: "/js/gtag.js"},
+      {src: "/js/analytics.js"},
     ]
   },
   server: {port: 5000},
