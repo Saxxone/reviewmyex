@@ -9,7 +9,8 @@ export default {
       {hid: 'description', name: 'description', content: 'Review your past dates and exes, and help others know what to expect.'},
       {name: 'format-detection', content: 'telephone=no'},
       {name: 'twitter:description', content: 'Review your past dates and exes, and help others know what to expect.'},
-      {name: 'twitter:title', content: 'Review My Ex'}
+      {name: 'twitter:title', content: 'Review My Ex'},
+      {name: 'twitter:image', content: 'https://reviewmyex.com/review.jpeg'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png'},
