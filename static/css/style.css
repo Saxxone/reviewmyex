@@ -130,3 +130,6 @@ a {
   box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
   border-color: #3023AE;
 }
+.btn-primary[disabled] {
+  border-color: #3023AE !important;
+}

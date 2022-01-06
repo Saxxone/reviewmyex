@@ -74,7 +74,7 @@
     <div :class="[showChat ? 'show' : '']" class="chat-wrap p-2">
       <div class="chat-wrap-content ">
         <div class="d-flex mb-4">
-          <div>Send Review</div>
+          <div class="pl-2 font-bold-900" style="opacity: 0.8">Send Review</div>
           <div @click="close" class="close-btn ml-auto">
             <div>
               <img src="/images/cancel.svg" class="img-fluid" style="opacity: 0.6; width: 10px" alt="">
@@ -242,8 +242,9 @@ input::placeholder {
 .chat-wrap-content {
   background-color: white;
   border: 1px solid #cfcfcf;
+  border-radius: 15px;
   padding: 18px 10px;
-  box-shadow: 0 10px 20px rgba(65, 11, 24, 0.1);
+  box-shadow: 0 10px 20px rgba(24, 46, 104, 0.15);
 }
 
 .chat-wrap.show {
@@ -285,5 +286,8 @@ input::placeholder {
 
 label {
   font-size: 14px !important;
+}
+.btn-primary[disabled] {
+  border-color: #3023AE !important;
 }
 </style>
