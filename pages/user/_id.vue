@@ -130,10 +130,10 @@ export default {
     this.getUserData()
   },
   methods: {
-    getUserData() {
+   async getUserData() {
       const username = this.$route.params.id
       console.log(username)
-      this.$store.dispatch('users/getUser', username)
+      await this.$store.dispatch('users/getUser', username)
     },
     goBack() {
       this.$router.go(-1)

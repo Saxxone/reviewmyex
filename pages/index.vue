@@ -108,8 +108,8 @@ export default {
         })
       }
     },
-    fetchUsers() {
-      this.$store.dispatch('users/fetchUsers')
+    async fetchUsers() {
+     await this.$store.dispatch('users/fetchUsers')
     },
     close() {
       this.showSearch = false
