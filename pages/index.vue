@@ -97,6 +97,7 @@ export default {
   },
   methods: {
     search() {
+      this.filter = this.filter.replace(/\s/g, '');
       if (this.filter.length > 0) {
         this.isLoading = true
         if (this.filter.charAt(0) === '@') this.filter = this.filter.substring(1);
@@ -117,7 +118,7 @@ export default {
       }
     },
     onClickSearch() {
-      console.log("hello")
+      this.searchUsername = this.searchUsername.replace(/\s/g, '');
       if (this.searchUsername.length > 0) {
         this.isLoading = true
         if (this.searchUsername.charAt(0) === '@') this.searchUsername = this.searchUsername.substring(1);
