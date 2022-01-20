@@ -128,6 +128,7 @@ export default {
           }
           this.isLoading = false
           this.showSearchResults = true
+          this.searchUsername = ""
         }).catch(e => {
           this.$notification('error', e.message, true)
           console.log(e.message)
