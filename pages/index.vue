@@ -16,8 +16,8 @@
     </div>
 
     <div class="d-flex px-2 top-bar justify-content-between font-weight-bold mt-3 align-items-center text-12">
-      <div @click="showSearchResults=false" class="" v-if="showSearchResults">
-        <div style="opacity: 0.7" class="mr-1 d-flex align-items-center justify-content-center text-center back-button">
+      <div @click="showSearchResults=false; fetchUsers();" class="" v-if="showSearchResults">
+        <div style="opacity: 0.6" class="mr-1 d-flex align-items-center justify-content-center text-center back-button">
           <div>
             <img src="/images/cancel.svg" width="16px" class="img-fluid" alt="">
           </div>
