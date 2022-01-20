@@ -25,14 +25,14 @@
           </div>
         </div>
       </div>
-      <div @click="showSearch = true" class="white-pill ml-auto">
-        <div class="mr-1 ml-auto">
-          <img src="/images/search-purple.svg" class="img-fluid" alt="">
-        </div>
-        <div>
-          Search Twitter
-        </div>
-      </div>
+<!--      <div @click="showSearch = true" class="white-pill ml-auto">-->
+<!--        <div class="mr-1 ml-auto">-->
+<!--          <img src="/images/search-purple.svg" class="img-fluid" alt="">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          Search Twitter-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
     <div :class="[showSearch ? 'show' : '']" class="search-wrap px-2 pt-3">
       <div class="search-input d-flex align-items-center px-3">
